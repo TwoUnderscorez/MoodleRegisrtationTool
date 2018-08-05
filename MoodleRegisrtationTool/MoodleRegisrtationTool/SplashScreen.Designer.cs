@@ -1,6 +1,6 @@
 ﻿namespace MoodleRegisrtationTool
 {
-    partial class Form1
+    partial class SplashScreen
     {
         /// <summary>
         /// Required designer variable.
