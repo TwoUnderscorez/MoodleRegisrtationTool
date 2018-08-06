@@ -19,3 +19,4 @@ C:\Users\ronyu\Source\Repos\MoodleRegisrtationTool\MoodleRegisrtationTool\Moodle
 C:\Users\ronyu\Source\Repos\MoodleRegisrtationTool\MoodleRegisrtationTool\MoodleRegisrtationTool\obj\Debug\MoodleRegisrtationTool.csproj.CopyComplete
 C:\Users\ronyu\Source\Repos\MoodleRegisrtationTool\MoodleRegisrtationTool\MoodleRegisrtationTool\obj\Debug\MoodleRegisrtationTool.exe
 C:\Users\ronyu\Source\Repos\MoodleRegisrtationTool\MoodleRegisrtationTool\MoodleRegisrtationTool\obj\Debug\MoodleRegisrtationTool.pdb
+C:\Users\ronyu\Source\Repos\MoodleRegisrtationTool\MoodleRegisrtationTool\MoodleRegisrtationTool\obj\Debug\MoodleRegisrtationTool.csprojAssemblyReference.cache

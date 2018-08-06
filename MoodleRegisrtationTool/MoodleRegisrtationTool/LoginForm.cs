@@ -15,7 +15,7 @@ namespace MoodleRegisrtationTool
 {
     public partial class LoginForm : MetroForm
     {
-        public LoginForm()
+        public LoginForm(SplashScreen splashScreen)
         {
             InitializeComponent();
             protocol_combobox.Text = "rest";
