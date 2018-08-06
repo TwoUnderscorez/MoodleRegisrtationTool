@@ -37,8 +37,8 @@
             this.moodleuri_txt = new MetroFramework.Controls.MetroTextBox();
             this.login_btn = new MetroFramework.Controls.MetroButton();
             this.moodleuri_chkbos = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.protocol_chkbox = new System.Windows.Forms.CheckBox();
+            this.token_chkbox = new System.Windows.Forms.CheckBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showHelp_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +107,7 @@
             this.login_btn.Size = new System.Drawing.Size(425, 23);
             this.login_btn.TabIndex = 6;
             this.login_btn.Text = "Login";
+            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
             // moodleuri_chkbos
             // 
@@ -118,25 +119,25 @@
             this.moodleuri_chkbos.TabIndex = 7;
             this.moodleuri_chkbos.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // protocol_chkbox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(433, 97);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.protocol_chkbox.AutoSize = true;
+            this.protocol_chkbox.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.protocol_chkbox.Location = new System.Drawing.Point(433, 97);
+            this.protocol_chkbox.Name = "protocol_chkbox";
+            this.protocol_chkbox.Size = new System.Drawing.Size(15, 14);
+            this.protocol_chkbox.TabIndex = 8;
+            this.protocol_chkbox.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // token_chkbox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(433, 129);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.token_chkbox.AutoSize = true;
+            this.token_chkbox.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.token_chkbox.Location = new System.Drawing.Point(433, 129);
+            this.token_chkbox.Name = "token_chkbox";
+            this.token_chkbox.Size = new System.Drawing.Size(15, 14);
+            this.token_chkbox.TabIndex = 9;
+            this.token_chkbox.UseVisualStyleBackColor = true;
             // 
             // metroLabel4
             // 
@@ -169,8 +170,8 @@
             this.ClientSize = new System.Drawing.Size(460, 197);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.metroLabel4);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.token_chkbox);
+            this.Controls.Add(this.protocol_chkbox);
             this.Controls.Add(this.moodleuri_chkbos);
             this.Controls.Add(this.login_btn);
             this.Controls.Add(this.moodleuri_txt);
@@ -207,8 +208,8 @@
         private MetroFramework.Controls.MetroTextBox moodleuri_txt;
         private MetroFramework.Controls.MetroButton login_btn;
         private System.Windows.Forms.CheckBox moodleuri_chkbos;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox protocol_chkbox;
+        private System.Windows.Forms.CheckBox token_chkbox;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem showHelp_toolStripMenuItem;

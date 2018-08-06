@@ -15,15 +15,19 @@ namespace MoodleRegisrtationTool
 {
     public partial class LoginForm : MetroForm
     {
+        SplashScreen SplashScreen;
         public LoginForm(SplashScreen splashScreen)
         {
             InitializeComponent();
             protocol_combobox.Text = "rest";
+            SplashScreen = splashScreen;
         }
 
         private void LoginFormcs_Load(object sender, EventArgs e)
         {
-            
+            moodleuri_txt.Text = Properties.Settings.Default.ServerURI;
+            protocol_combobox.Text = Properties.Settings.Default.ServerProtocol;
+            token_txt.Text = Properties.Settings.Default.ServerToken;
         }
 
         private void showHelp_toolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,6 +42,33 @@ namespace MoodleRegisrtationTool
                 FormBorderStyle = FormBorderStyle.FixedDialog;
                 showHelp_toolStripMenuItem.Checked = true;
             }
+        }
+
+        private void login_btn_Click(object sender, EventArgs e)
+        {
+            saveSettings();
+
+            SplashScreen.Server.Clear();
+            SplashScreen.Server.Add("protocol", protocol_chkbox.Text);
+            SplashScreen.Server.Add("uri", moodleuri_txt.Text);
+            SplashScreen.Server.Add("token", token_txt.Text);
+        }
+
+        private void saveSettings()
+        {
+            if (moodleuri_chkbos.Checked)
+                Properties.Settings.Default.ServerURI = moodleuri_txt.Text;
+            else
+                Properties.Settings.Default.ServerURI = string.Empty;
+            if (protocol_chkbox.Checked)
+                Properties.Settings.Default.ServerProtocol = protocol_chkbox.Text;
+            else
+                Properties.Settings.Default.ServerProtocol = string.Empty;
+            if (token_chkbox.Checked)
+                Properties.Settings.Default.ServerToken = token_txt.Text;
+            else
+                Properties.Settings.Default.ServerToken = string.Empty;
+            Properties.Settings.Default.Save();
         }
     }
 }
