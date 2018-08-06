@@ -12,7 +12,8 @@ namespace MoodleRegisrtationTool
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        Dictionary<string, string> Server;
+        public MainForm(IDictionary<string, string> Server)
         {
             InitializeComponent();
         }

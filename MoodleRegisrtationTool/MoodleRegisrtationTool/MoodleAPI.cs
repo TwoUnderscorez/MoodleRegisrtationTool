@@ -74,7 +74,7 @@ namespace MoodleRegisrtationTool
             return null;
         }
 
-        public async Task<Dictionary<string, string>> GetUserProfile(IDictionary<string, string> Server, int UserID)
+        public async Task<Dictionary<string, object>> GetUserProfile(IDictionary<string, string> Server, int UserID)
         {
             string result = await Task.Run(() =>
             {
