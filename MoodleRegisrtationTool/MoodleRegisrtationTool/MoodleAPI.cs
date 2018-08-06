@@ -60,6 +60,20 @@ namespace MoodleRegisrtationTool
             return null;
         }
 
+        public async Task<Dictionary<string, string>> AddMembersToCohort(IDictionary<string, string> Server, IDictionary<string, IDictionary<string, string>> Params)
+        {
+            string result = await Task.Run(() =>
+            {
+                /* Decide which protocol function to use from the moodle api and
+                 * execute the function with the function parameters.
+                 */
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                return (string)ProtocolFunction(Server, Params, "core_cohort_add_cohort_members", "members");
+            });
+            /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
+            return null;
+        }
+
         #endregion
     }
 }
