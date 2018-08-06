@@ -345,3 +345,11 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Visual Studio 2017
+*.ide-shm
+*.sqlite
+*.lock
+*.ide
+*.ide-wal
+*.dtbcache
