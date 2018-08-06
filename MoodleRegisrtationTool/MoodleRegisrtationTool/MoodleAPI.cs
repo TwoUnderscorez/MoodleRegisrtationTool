@@ -74,6 +74,20 @@ namespace MoodleRegisrtationTool
             return null;
         }
 
+        public async Task<Dictionary<string, string>> GetUserProfile(IDictionary<string, string> Server, int UserID)
+        {
+            string result = await Task.Run(() =>
+            {
+                /* Decide which protocol function to use from the moodle api and
+                 * execute the function with the function parameters.
+                 */
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                return (string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid");
+            });
+            /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
+            return null;
+        }
+
         #endregion
     }
 }
