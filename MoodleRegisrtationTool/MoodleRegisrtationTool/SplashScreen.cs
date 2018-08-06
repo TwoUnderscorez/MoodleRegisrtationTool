@@ -21,39 +21,43 @@ namespace MoodleRegisrtationTool
             Server = new Dictionary<string, string>(3);
         }
 
-        private async Task SplashScreen_LoadAsync(object sender, EventArgs e)
+        private async void SplashScreen_LoadAsync(object sender, EventArgs e)
         {
             await Task.Delay(1000);
             LoginForm loginForm = new LoginForm(this);
             Hide();
             loginForm.Show();
-            loginForm.FormClosed += LoginForm_FormClosed;
+            loginForm.VisibleChanged += LoginForm_VisibleChanged;
         }
 
-        private async void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        private async void LoginForm_VisibleChanged(object sender, EventArgs e)
         {
-            Show();
-            /* Asynchronously initialize the Moodle API */
-            MoodleAPI moodleAPI = await Task.Run(() =>
+            if(!((LoginForm)sender).Visible)
             {
-                return new MoodleAPI();
-            });
-            /* Asynchronously verify the server information */
-            Dictionary<string, object> Response = await moodleAPI.GetUserProfile(Server, 0);
-            if((int)Response["status"] == 1)
-            {
-                /* If all is good, continie to the MainForm */
-                MainForm mainForm = new MainForm(Server);
-                Hide();
-                ((LoginForm)sender).Close();
-                mainForm.Show();
-            }
-            else
-            {
-                /* If the login failed, prompt user to try again */
-                Hide();
-                ((LoginForm)sender).Style = MetroFramework.MetroColorStyle.Red;
-                ((LoginForm)sender).Show();
+                Show();
+                /* Asynchronously initialize the Moodle API */
+                MoodleAPI moodleAPI = await Task.Run(() =>
+                {
+                    return new MoodleAPI();
+                });
+                /* Asynchronously verify the server information */
+                Dictionary<string, object> Response = await moodleAPI.GetUserProfile(Server, 0);
+                if ((int)Response["status"] == 1)
+                {
+                    /* If all is good, continie to the MainForm */
+                    MainForm mainForm = new MainForm(Server);
+                    Hide();
+                    ((LoginForm)sender).Close();
+                    mainForm.Show();
+                }
+                else
+                {
+                    /* If the login failed, prompt user to try again */
+                    await Task.Delay(1000);
+                    Hide();
+                    ((LoginForm)sender).Style = MetroFramework.MetroColorStyle.Red;
+                    ((LoginForm)sender).Visible = true;
+                }
             }
         }
     }

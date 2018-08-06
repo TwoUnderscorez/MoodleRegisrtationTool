@@ -187,10 +187,10 @@
             this.Name = "LoginForm";
             this.Resizable = false;
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Style = MetroFramework.MetroColorStyle.Blue;
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.Load += new System.EventHandler(this.LoginFormcs_Load);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);

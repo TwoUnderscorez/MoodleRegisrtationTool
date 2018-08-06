@@ -52,6 +52,8 @@ namespace MoodleRegisrtationTool
             SplashScreen.Server.Add("protocol", protocol_chkbox.Text);
             SplashScreen.Server.Add("uri", moodleuri_txt.Text);
             SplashScreen.Server.Add("token", token_txt.Text);
+
+            Visible = false;
         }
 
         private void saveSettings()
@@ -69,6 +71,12 @@ namespace MoodleRegisrtationTool
             else
                 Properties.Settings.Default.ServerToken = string.Empty;
             Properties.Settings.Default.Save();
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+                Environment.Exit(0);
         }
     }
 }
