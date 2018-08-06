@@ -38,6 +38,39 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, Users, "core_user_create_users", "users");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
+            return null; 
+        }
+
+        public async Task<Dictionary<string, string>> CreateCohort(IDictionary<string, string> Server, IDictionary<string, object> CohortData)
+        {
+            /* Put the cohort data into a list (bacause that's how the API works) */
+            List<Dictionary<string, object>> Cohorts = new List<Dictionary<string, object>>(1)
+            {
+                [0] = (Dictionary<string, object>)CohortData
+            };
+            string result = await Task.Run(() =>
+            {
+                /* Decide which protocol function to use from the moodle api and
+                 * execute the function with the function parameters.
+                 */
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                return (string)ProtocolFunction(Server, Cohorts, "core_cohort_create_cohorts", "cohorts");
+            });
+            /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
+            return null;
+        }
+
+        public async Task<Dictionary<string, string>> AddMembersToCohort(IDictionary<string, string> Server, IDictionary<string, IDictionary<string, string>> Params)
+        {
+            string result = await Task.Run(() =>
+            {
+                /* Decide which protocol function to use from the moodle api and
+                 * execute the function with the function parameters.
+                 */
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                return (string)ProtocolFunction(Server, Params, "core_cohort_add_cohort_members", "members");
+            });
+            /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
             return null;
         }
 
