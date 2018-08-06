@@ -102,15 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-/MoodleRegisrtationTool/.vs/*
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/DesignTimeBuild/.dtbcache
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/Server/sqlite3/db.lock
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/Server/sqlite3/storage.ide
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/Server/sqlite3/storage.ide-shm
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/Server/sqlite3/storage.ide-wal
-/MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/.suo
-/MoodleRegisrtationTool/.vs/*
-/.vs/*
+
+
+# Visual Studio
 .vs/
-MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/.suo
-MoodleRegisrtationTool/.vs/MoodleRegisrtationTool/v15/Server/sqlite3/storage.ide-shm
