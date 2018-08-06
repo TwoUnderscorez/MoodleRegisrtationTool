@@ -85,7 +85,8 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null;
+            Dictionary<string, object> userProfile = null;
+            return userProfile;
         }
 
         #endregion
