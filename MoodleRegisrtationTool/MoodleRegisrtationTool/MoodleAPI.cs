@@ -54,7 +54,7 @@ namespace MoodleRegisrtationTool
                  * execute the function with the function parameters.
                  */
                 dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
-                return (string)ProtocolFunction(Server, Cohorts, "core_cohort_create_cohorts", "users");
+                return (string)ProtocolFunction(Server, Cohorts, "core_cohort_create_cohorts", "cohorts");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
             return null;
