@@ -21,7 +21,8 @@ namespace MoodleRegisrtationTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            CSVPerson cSVPerson = new CSVPerson("Ron", "Yutkin", "rony");
+            flowLayoutPanel1.Controls.Add(cSVPerson);
         }
     }
 }
