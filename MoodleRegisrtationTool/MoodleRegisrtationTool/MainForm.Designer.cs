@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.browse_btn = new MetroFramework.Controls.MetroButton();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             this.metroTabPage1.Controls.Add(this.metroButton2);
             this.metroTabPage1.Controls.Add(this.flowLayoutPanel1);
-            this.metroTabPage1.Controls.Add(this.metroButton1);
+            this.metroTabPage1.Controls.Add(this.browse_btn);
             this.metroTabPage1.Controls.Add(this.metroTextBox1);
             this.metroTabPage1.Controls.Add(this.metroLabel1);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
@@ -72,6 +72,52 @@
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Upload Users";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Location = new System.Drawing.Point(648, 274);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(101, 23);
+            this.metroButton2.TabIndex = 6;
+            this.metroButton2.Text = "Upload selected";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 31);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(746, 237);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // browse_btn
+            // 
+            this.browse_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browse_btn.Location = new System.Drawing.Point(678, 2);
+            this.browse_btn.Name = "browse_btn";
+            this.browse_btn.Size = new System.Drawing.Size(75, 23);
+            this.browse_btn.TabIndex = 4;
+            this.browse_btn.Text = "Browse";
+            this.browse_btn.Click += new System.EventHandler(this.browse_btn_Click);
+            // 
+            // metroTextBox1
+            // 
+            this.metroTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTextBox1.Location = new System.Drawing.Point(74, 2);
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.ReadOnly = true;
+            this.metroTextBox1.Size = new System.Drawing.Size(598, 23);
+            this.metroTextBox1.TabIndex = 3;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(4, 4);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(64, 19);
+            this.metroLabel1.TabIndex = 2;
+            this.metroLabel1.Text = "CSV File: ";
             // 
             // metroTabPage2
             // 
@@ -83,6 +129,20 @@
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "License";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(0, 0);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox2.Size = new System.Drawing.Size(752, 331);
+            this.textBox2.TabIndex = 3;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // metroTabPage3
             // 
@@ -108,65 +168,6 @@
             this.textBox1.Size = new System.Drawing.Size(752, 331);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = resources.GetString("textBox1.Text");
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(0, 0);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(752, 331);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(4, 4);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(64, 19);
-            this.metroLabel1.TabIndex = 2;
-            this.metroLabel1.Text = "CSV File: ";
-            // 
-            // metroTextBox1
-            // 
-            this.metroTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroTextBox1.Location = new System.Drawing.Point(74, 2);
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.ReadOnly = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(598, 23);
-            this.metroTextBox1.TabIndex = 3;
-            // 
-            // metroButton1
-            // 
-            this.metroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton1.Location = new System.Drawing.Point(678, 2);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 4;
-            this.metroButton1.Text = "Browse";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 31);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(746, 237);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // metroButton2
-            // 
-            this.metroButton2.Location = new System.Drawing.Point(648, 274);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(101, 23);
-            this.metroButton2.TabIndex = 6;
-            this.metroButton2.Text = "Upload selected";
             // 
             // MainForm
             // 
@@ -196,7 +197,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
         private System.Windows.Forms.TextBox textBox1;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton browse_btn;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
