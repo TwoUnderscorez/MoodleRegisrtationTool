@@ -35,7 +35,38 @@ namespace MoodleRegisrtationTool
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.FileName))
                 {
-                    List<object> Students = ParseCSVFile(fbd.FileName);
+                    path_txt.Text = fbd.FileName;
+                    List<Dictionary<string, string>> Students = new List<Dictionary<string, string>>();
+                    Students.Add(new Dictionary<string, string>(4)
+                    {
+                        ["firstname"] = "Lev",
+                        ["lastname"] = "Gorts",
+                        ["username"] = "levg",
+                        ["email"] = "leogorts@gmail.com"
+                    });
+                    Students.Add(new Dictionary<string, string>(4)
+                    {
+                        ["firstname"] = "Ron",
+                        ["lastname"] = "Yutkin",
+                        ["username"] = "rony",
+                        ["email"] = "ron.yutkin@gmail.com"
+                    });
+                    Students.Add(new Dictionary<string, string>(4)
+                    {
+                        ["firstname"] = "Yuval",
+                        ["lastname"] = "Stein",
+                        ["username"] = "yuvals",
+                        ["email"] = "yuvalsteinb@gmail.com"
+                    });
+
+                    CSVPerson csvPerson;
+                    flowLayoutPanel.Controls.Clear();
+                    foreach (Dictionary<string,string> item in Students)
+                    {
+                        csvPerson = new CSVPerson(item);
+                        flowLayoutPanel.Controls.Add(csvPerson);
+                        csvPerson.Checked = true;
+                    }
                 }
             }
         }
