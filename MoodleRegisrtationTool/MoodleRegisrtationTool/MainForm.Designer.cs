@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.cohortName_txt = new MetroFramework.Controls.MetroTextBox();
+            this.uploadToCohorts_chkbox = new MetroFramework.Controls.MetroCheckBox();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.browse_btn = new MetroFramework.Controls.MetroButton();
@@ -61,6 +63,8 @@
             // metroTabPage1
             // 
             this.metroTabPage1.AutoScroll = true;
+            this.metroTabPage1.Controls.Add(this.cohortName_txt);
+            this.metroTabPage1.Controls.Add(this.uploadToCohorts_chkbox);
             this.metroTabPage1.Controls.Add(this.metroButton2);
             this.metroTabPage1.Controls.Add(this.flowLayoutPanel);
             this.metroTabPage1.Controls.Add(this.browse_btn);
@@ -75,6 +79,24 @@
             this.metroTabPage1.Text = "Upload Users";
             this.metroTabPage1.VerticalScrollbar = true;
             this.metroTabPage1.VerticalScrollbarBarColor = true;
+            // 
+            // cohortName_txt
+            // 
+            this.cohortName_txt.Location = new System.Drawing.Point(203, 274);
+            this.cohortName_txt.Name = "cohortName_txt";
+            this.cohortName_txt.Size = new System.Drawing.Size(221, 23);
+            this.cohortName_txt.TabIndex = 8;
+            // 
+            // uploadToCohorts_chkbox
+            // 
+            this.uploadToCohorts_chkbox.AutoSize = true;
+            this.uploadToCohorts_chkbox.Location = new System.Drawing.Point(3, 276);
+            this.uploadToCohorts_chkbox.Name = "uploadToCohorts_chkbox";
+            this.uploadToCohorts_chkbox.Size = new System.Drawing.Size(194, 15);
+            this.uploadToCohorts_chkbox.TabIndex = 7;
+            this.uploadToCohorts_chkbox.Text = "Add students to a ohort named: ";
+            this.uploadToCohorts_chkbox.UseVisualStyleBackColor = true;
+            this.uploadToCohorts_chkbox.CheckedChanged += new System.EventHandler(this.uploadToCohorts_chkbox_CheckedChanged);
             // 
             // metroButton2
             // 
@@ -207,5 +229,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroTextBox cohortName_txt;
+        private MetroFramework.Controls.MetroCheckBox uploadToCohorts_chkbox;
     }
 }
