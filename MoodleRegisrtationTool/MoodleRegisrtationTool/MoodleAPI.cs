@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MoodleRegisrtationTool
 {
@@ -27,6 +28,26 @@ namespace MoodleRegisrtationTool
 
         #region Methods
 
+        public Dictionary<string, string> getDictionaryFromXML(string xmlString)
+        {
+            XDocument doc = XDocument.Parse(xmlString);
+            Dictionary<string, string> dataDictionary = new Dictionary<string, string>();
+
+            foreach (XElement element in doc.Descendants().Where(p => p.HasElements == false))
+            {
+                int keyInt = 0;
+                string keyName = element.Name.LocalName;
+
+                while (dataDictionary.ContainsKey(keyName))
+                {
+                    keyName = element.Name.LocalName + "_" + keyInt++;
+                }
+
+                dataDictionary.Add(keyName, element.Value);
+            }
+            return dataDictionary;
+        }
+
         public async Task<IDictionary<string,string>> UploadUsers(IDictionary<string, string> Server, IList<IDictionary<string, string>> Users)
         {
             string result = await Task.Run(() =>
@@ -38,7 +59,7 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, Users, "core_user_create_users", "users");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null; 
+            return getDictionaryFromXML(result); 
         }
 
         public async Task<Dictionary<string, string>> CreateCohort(IDictionary<string, string> Server, IDictionary<string, object> CohortData)
@@ -57,7 +78,7 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, Cohorts, "core_cohort_create_cohorts", "cohorts");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null;
+            return getDictionaryFromXML(result);
         }
 
         public async Task<Dictionary<string, string>> AddMembersToCohort(IDictionary<string, string> Server, IDictionary<string, IDictionary<string, string>> Params)
@@ -71,7 +92,7 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, Params, "core_cohort_add_cohort_members", "members");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null;
+            return getDictionaryFromXML(result);
         }
 
         public async Task<Dictionary<string, object>> GetUserProfile(IDictionary<string, string> Server, int UserID)
@@ -85,8 +106,22 @@ namespace MoodleRegisrtationTool
                 return (string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            Dictionary<string, object> userProfile = null;
-            return userProfile;
+            XDocument doc = XDocument.Parse(result);
+            Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+            foreach (XElement element in doc.Descendants().Where(p => p.HasElements == false))
+            {
+                int keyInt = 0;
+                string keyName = element.Name.LocalName;
+
+                while (dataDictionary.ContainsKey(keyName))
+                {
+                    keyName = element.Name.LocalName + "_" + keyInt++;
+                }
+
+                dataDictionary.Add(keyName, element.Value);
+            }
+            return dataDictionary;
         }
 
         #endregion
