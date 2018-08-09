@@ -55,7 +55,7 @@ namespace MoodleRegisrtationTool
             saveSettings();
 
             SplashScreen.Server.Clear();
-            SplashScreen.Server.Add("protocol", protocol_combobox.Text);
+            SplashScreen.Server.Add("protocol", "rest");
             SplashScreen.Server.Add("uri", moodleuri_txt.Text);
             SplashScreen.Server.Add("token", token_txt.Text);
 
