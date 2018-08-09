@@ -3,6 +3,7 @@ using Microsoft.Scripting.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -14,15 +15,13 @@ namespace MoodleRegisrtationTool
         #region Private Variables
         ScriptRuntime python;
         dynamic moodle;
-        dynamic mdl;
         #endregion
 
         #region Constructor
         public MoodleAPI()
         {
             python = Python.CreateRuntime();
-            moodle = python.ImportModule("moodle.moodle");
-            mdl = moodle.MDL();
+            moodle = python.ImportModule("moodle");
         }
         #endregion
 
@@ -55,7 +54,7 @@ namespace MoodleRegisrtationTool
                 /* Decide which protocol function to use from the moodle api and
                  * execute the function with the function parameters.
                  */
-                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? moodle.rest_protocol : moodle.xmlrpc_protocol;
                 return (string)ProtocolFunction(Server, Users, "core_user_create_users", "users");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
@@ -74,7 +73,7 @@ namespace MoodleRegisrtationTool
                 /* Decide which protocol function to use from the moodle api and
                  * execute the function with the function parameters.
                  */
-                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? moodle.rest_protocol : moodle.xmlrpc_protocol;
                 return (string)ProtocolFunction(Server, Cohorts, "core_cohort_create_cohorts", "cohorts");
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
@@ -88,8 +87,8 @@ namespace MoodleRegisrtationTool
                 /* Decide which protocol function to use from the moodle api and
                  * execute the function with the function parameters.
                  */
-                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
-                return (string)ProtocolFunction(Server, Params, "core_cohort_add_cohort_members", "members");
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? moodle.rest_protocol : moodle.xmlrpc_protocol;
+                return GET(ProtocolFunction(Server, Params, "core_cohort_add_cohort_members", "members"));
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
             return getDictionaryFromXML(result);
@@ -102,8 +101,8 @@ namespace MoodleRegisrtationTool
                 /* Decide which protocol function to use from the moodle api and
                  * execute the function with the function parameters.
                  */
-                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
-                return (string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid");
+                dynamic ProtocolFunction = (Server["protocol"] == "rest") ? moodle.rest_protocol : moodle.xmlrpc_protocol;
+                return GET((string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid"));
             });
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
             XDocument doc = XDocument.Parse(result);
@@ -122,6 +121,22 @@ namespace MoodleRegisrtationTool
                 dataDictionary.Add(keyName, element.Value);
             }
             return dataDictionary;
+        }
+
+        async public Task<string> GET(string uri)
+        { 
+            string myContent;
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage response = await client.GetAsync(uri))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        myContent = await content.ReadAsStringAsync();
+                    }
+                }
+            }
+            return myContent;
         }
 
         #endregion

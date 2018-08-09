@@ -28,6 +28,12 @@ namespace MoodleRegisrtationTool
             moodleuri_txt.Text = Properties.Settings.Default.ServerURI;
             protocol_combobox.Text = Properties.Settings.Default.ServerProtocol;
             token_txt.Text = Properties.Settings.Default.ServerToken;
+            if (Properties.Settings.Default.ServerURI.Length > 1)
+                moodleuri_chkbos.Checked = true;
+            if (Properties.Settings.Default.ServerProtocol.Length > 1)
+                protocol_chkbox.Checked = true;
+            if (Properties.Settings.Default.ServerToken.Length > 1)
+                token_chkbox.Checked = true;
         }
 
         private void showHelp_toolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +55,7 @@ namespace MoodleRegisrtationTool
             saveSettings();
 
             SplashScreen.Server.Clear();
-            SplashScreen.Server.Add("protocol", protocol_chkbox.Text);
+            SplashScreen.Server.Add("protocol", protocol_combobox.Text);
             SplashScreen.Server.Add("uri", moodleuri_txt.Text);
             SplashScreen.Server.Add("token", token_txt.Text);
 
