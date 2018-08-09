@@ -16,7 +16,7 @@ namespace MoodleRegisrtationTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(null));
+            Application.Run(new SplashScreen());
         }
     }
 }
