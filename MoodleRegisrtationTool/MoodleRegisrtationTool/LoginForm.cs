@@ -58,7 +58,7 @@ namespace MoodleRegisrtationTool
             SplashScreen.Server.Add("protocol", "rest");
             SplashScreen.Server.Add("uri", moodleuri_txt.Text);
             SplashScreen.Server.Add("token", token_txt.Text);
-
+            Text = "Login";
             Visible = false;
         }
 
@@ -83,6 +83,11 @@ namespace MoodleRegisrtationTool
         {
             if (e.CloseReason == CloseReason.UserClosing)
                 Environment.Exit(0);
+        }
+
+        private void LoginForm_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
