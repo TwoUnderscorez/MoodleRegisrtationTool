@@ -42,22 +42,30 @@ namespace MoodleRegisrtationTool
                 });
                 /* Asynchronously verify the server information */
                 Dictionary<string, object> Response = await moodleAPI.GetUserProfile(Server, 0);
-                if ((int)Response["status"] == 1)
+                if (Response.Keys.Contains("status") && (int)Response["status"] == 1)
                 {
                     /* If all is good, continie to the MainForm */
                     MainForm mainForm = new MainForm(Server);
                     Hide();
                     ((LoginForm)sender).Close();
                     mainForm.Show();
+                    return;
+                }
+                else if (Response.Keys.Contains("ERRORCODE") && Response.Keys.Contains("MESSAGE"))
+                {
+                    /* Display error message */
+                    ((LoginForm)sender).Text = $"Login - {(string)Response["MESSAGE"]}";
                 }
                 else
                 {
-                    /* If the login failed, prompt user to try again */
-                    await Task.Delay(1000);
-                    Hide();
-                    ((LoginForm)sender).Style = MetroFramework.MetroColorStyle.Red;
-                    ((LoginForm)sender).Visible = true;
+                    /* Display error message */
+                    ((LoginForm)sender).Text = "Login - Unknown error / unable to parse moodle's response";
                 }
+                /* If the login failed, prompt user to try again */
+                await Task.Delay(1000);
+                Hide();
+                ((LoginForm)sender).Style = MetroFramework.MetroColorStyle.Red;
+                ((LoginForm)sender).Visible = true;
             }
         }
     }
