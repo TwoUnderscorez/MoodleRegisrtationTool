@@ -32,7 +32,7 @@ namespace MoodleRegisrtationTool
 
         private async void LoginForm_VisibleChanged(object sender, EventArgs e)
         {
-            if(!((LoginForm)sender).Visible)
+            if (!((LoginForm)sender).Visible)
             {
                 Show();
                 /* Asynchronously initialize the Moodle API */

@@ -39,7 +39,7 @@ namespace MoodleRegisrtationTool
             return $"{firstName} {lastName} [{userName}]";
         }
 
-        public override string Text { get => ToString(); set => base.Text = value; }
+        //public override string Text { get => ToString(); set => base.Text = value; }; 
 
         private void ToolTipSetup()
         {
