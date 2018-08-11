@@ -97,6 +97,7 @@ namespace MoodleRegisrtationTool
 
         public async Task<Dictionary<string, object>> GetUserProfile(IDictionary<string, string> Server, int UserID)
         {
+<<<<<<< yuval
             string result = await Task.Run(() =>
             {
                 /* Decide which protocol function to use from the moodle api and
@@ -105,6 +106,14 @@ namespace MoodleRegisrtationTool
                 dynamic ProtocolFunction = (Server["protocol"] == "rest") ? mdl.rest_protocol : mdl.xmlrpc_protocol;
                 return (string)ProtocolFunction(Server, UserID, "core_user_view_user_profile", "userid");
             });
+=======
+            /* Decide which protocol function to use from the moodle api and
+            * execute the function with the function parameters.
+            */
+            Console.WriteLine("Here.");
+            string result = await GET(moodle.rest_protocol(Server, UserID, "core_user_view_user_profile", "userid"));
+            Console.WriteLine(result);
+>>>>>>> local
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
             XDocument doc = XDocument.Parse(result);
             Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
