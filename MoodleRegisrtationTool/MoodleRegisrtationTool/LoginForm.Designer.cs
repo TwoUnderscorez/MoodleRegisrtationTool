@@ -78,6 +78,7 @@
             // 
             // protocol_combobox
             // 
+            this.protocol_combobox.Enabled = false;
             this.protocol_combobox.ItemHeight = 23;
             this.protocol_combobox.Items.AddRange(new object[] {
             "rest",
@@ -123,6 +124,9 @@
             // protocol_chkbox
             // 
             this.protocol_chkbox.AutoSize = true;
+            this.protocol_chkbox.Checked = true;
+            this.protocol_chkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.protocol_chkbox.Enabled = false;
             this.protocol_chkbox.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.protocol_chkbox.Location = new System.Drawing.Point(433, 97);
             this.protocol_chkbox.Name = "protocol_chkbox";
