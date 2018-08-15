@@ -82,24 +82,28 @@
             // 
             // cohortName_txt
             // 
+            this.cohortName_txt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cohortName_txt.Location = new System.Drawing.Point(203, 274);
             this.cohortName_txt.Name = "cohortName_txt";
-            this.cohortName_txt.Size = new System.Drawing.Size(221, 23);
+            this.cohortName_txt.Size = new System.Drawing.Size(439, 23);
             this.cohortName_txt.TabIndex = 8;
             // 
             // uploadToCohorts_chkbox
             // 
+            this.uploadToCohorts_chkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.uploadToCohorts_chkbox.AutoSize = true;
             this.uploadToCohorts_chkbox.Location = new System.Drawing.Point(3, 276);
             this.uploadToCohorts_chkbox.Name = "uploadToCohorts_chkbox";
-            this.uploadToCohorts_chkbox.Size = new System.Drawing.Size(194, 15);
+            this.uploadToCohorts_chkbox.Size = new System.Drawing.Size(200, 15);
             this.uploadToCohorts_chkbox.TabIndex = 7;
-            this.uploadToCohorts_chkbox.Text = "Add students to a ohort named: ";
+            this.uploadToCohorts_chkbox.Text = "Add students to a cohort named: ";
             this.uploadToCohorts_chkbox.UseVisualStyleBackColor = true;
             this.uploadToCohorts_chkbox.CheckedChanged += new System.EventHandler(this.uploadToCohorts_chkbox_CheckedChanged);
             // 
             // metroButton2
             // 
+            this.metroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButton2.Location = new System.Drawing.Point(648, 274);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(101, 23);
@@ -108,6 +112,9 @@
             // 
             // flowLayoutPanel
             // 
+            this.flowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;

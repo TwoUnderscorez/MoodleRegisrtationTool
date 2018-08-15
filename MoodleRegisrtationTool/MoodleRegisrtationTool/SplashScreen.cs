@@ -42,12 +42,13 @@ namespace MoodleRegisrtationTool
                 });
                 /* Asynchronously verify the server information */
                 Dictionary<string, object> Response = await moodleAPI.GetUserProfile(Server, 0);
-                if (Response.Keys.Contains("status") && (int)Response["status"] == 1)
+                if (Response.Keys.Contains("status") && (bool)Response["status"])
                 {
                     /* If all is good, continie to the MainForm */
+                    Console.WriteLine("Here safe and sound");
                     MainForm mainForm = new MainForm(Server);
                     Hide();
-                    ((LoginForm)sender).Close();
+                    //((LoginForm)sender).Close();
                     mainForm.Show();
                     return;
                 }

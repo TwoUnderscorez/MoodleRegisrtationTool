@@ -19,7 +19,7 @@ namespace MoodleRegisrtationTool
         public LoginForm(SplashScreen splashScreen)
         {
             InitializeComponent();
-            protocol_combobox.Text = "rest";
+            protocol_combobox.Text = "restjson";
             SplashScreen = splashScreen;
         }
 
@@ -55,7 +55,7 @@ namespace MoodleRegisrtationTool
             saveSettings();
 
             SplashScreen.Server.Clear();
-            SplashScreen.Server.Add("protocol", "rest");
+            SplashScreen.Server.Add("protocol", "restjson");
             SplashScreen.Server.Add("uri", moodleuri_txt.Text);
             SplashScreen.Server.Add("token", token_txt.Text);
             Text = "Login";
