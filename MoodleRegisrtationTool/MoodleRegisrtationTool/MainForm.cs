@@ -22,7 +22,7 @@ namespace MoodleRegisrtationTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            uploadToCohorts_chkbox_CheckedChanged(sender, e);
         }
 
         private void browse_btn_Click(object sender, EventArgs e)
@@ -65,6 +65,11 @@ namespace MoodleRegisrtationTool
         {
             cohortName_txt.Enabled = uploadToCohorts_chkbox.Checked;
             if (!uploadToCohorts_chkbox.Checked) cohortName_txt.Text = string.Empty;
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

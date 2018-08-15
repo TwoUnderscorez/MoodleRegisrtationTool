@@ -82,12 +82,14 @@
             this.protocol_combobox.Enabled = false;
             this.protocol_combobox.ItemHeight = 23;
             this.protocol_combobox.Items.AddRange(new object[] {
+            "restjson",
             "rest",
             "xmlrpc"});
             this.protocol_combobox.Location = new System.Drawing.Point(140, 98);
             this.protocol_combobox.Name = "protocol_combobox";
             this.protocol_combobox.Size = new System.Drawing.Size(476, 29);
             this.protocol_combobox.TabIndex = 3;
+            this.protocol_combobox.TabStop = false;
             // 
             // token_txt
             // 
@@ -95,7 +97,8 @@
             this.token_txt.Location = new System.Drawing.Point(140, 133);
             this.token_txt.Name = "token_txt";
             this.token_txt.Size = new System.Drawing.Size(476, 23);
-            this.token_txt.TabIndex = 4;
+            this.token_txt.TabIndex = 1;
+            this.token_txt.TabStop = false;
             // 
             // moodleuri_txt
             // 
@@ -103,7 +106,8 @@
             this.moodleuri_txt.Location = new System.Drawing.Point(140, 69);
             this.moodleuri_txt.Name = "moodleuri_txt";
             this.moodleuri_txt.Size = new System.Drawing.Size(476, 23);
-            this.moodleuri_txt.TabIndex = 5;
+            this.moodleuri_txt.TabIndex = 0;
+            this.moodleuri_txt.TabStop = false;
             // 
             // login_btn
             // 
@@ -111,7 +115,7 @@
             this.login_btn.Location = new System.Drawing.Point(23, 162);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(619, 23);
-            this.login_btn.TabIndex = 6;
+            this.login_btn.TabIndex = 2;
             this.login_btn.Text = "Login";
             this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
@@ -124,6 +128,7 @@
             this.moodleuri_chkbos.Name = "moodleuri_chkbos";
             this.moodleuri_chkbos.Size = new System.Drawing.Size(15, 14);
             this.moodleuri_chkbos.TabIndex = 7;
+            this.moodleuri_chkbos.TabStop = false;
             this.moodleuri_chkbos.UseVisualStyleBackColor = true;
             // 
             // protocol_chkbox
@@ -138,6 +143,7 @@
             this.protocol_chkbox.Name = "protocol_chkbox";
             this.protocol_chkbox.Size = new System.Drawing.Size(15, 14);
             this.protocol_chkbox.TabIndex = 8;
+            this.protocol_chkbox.TabStop = false;
             this.protocol_chkbox.UseVisualStyleBackColor = true;
             // 
             // token_chkbox
@@ -149,6 +155,7 @@
             this.token_chkbox.Name = "token_chkbox";
             this.token_chkbox.Size = new System.Drawing.Size(15, 14);
             this.token_chkbox.TabIndex = 9;
+            this.token_chkbox.TabStop = false;
             this.token_chkbox.UseVisualStyleBackColor = true;
             // 
             // remember_lbl

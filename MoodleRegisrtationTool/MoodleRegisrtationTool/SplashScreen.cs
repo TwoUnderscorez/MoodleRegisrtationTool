@@ -52,10 +52,10 @@ namespace MoodleRegisrtationTool
                     mainForm.Show();
                     return;
                 }
-                else if (Response.Keys.Contains("ERRORCODE") && Response.Keys.Contains("MESSAGE"))
+                else if (Response.Keys.Contains("errorcode") && Response.Keys.Contains("message"))
                 {
                     /* Display error message */
-                    ((LoginForm)sender).Text = $"Login - {(string)Response["MESSAGE"]}";
+                    ((LoginForm)sender).Text = $"Login - {(string)Response["message"]}";
                 }
                 else
                 {
