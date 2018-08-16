@@ -42,6 +42,15 @@ namespace MoodleRegisrtationTool
             set { email = value; }
         }
 
+        private int? id;
+
+        public int? ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
 
         public CSVPerson(string firstName, string lastName, string userName, string email) : base()
         {
@@ -67,7 +76,7 @@ namespace MoodleRegisrtationTool
 
         public override string ToString()
         {
-            return $"{firstName} {lastName} [{userName}]";
+            return $"{firstName} {lastName} [{userName}] {((id.HasValue) ? $"[{id}]" : "")}";
         }
 
         private void ToolTipSetup()

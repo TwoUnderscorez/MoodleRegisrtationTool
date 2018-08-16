@@ -46,19 +46,16 @@ namespace MoodleRegisrtationTool
                 { "users", Users } }));
         }
 
-        public async Task<Dictionary<string, string>> CreateCohort(IDictionary<string, string> Server, IDictionary<string, object> CohortData)
+        public async Task<List<Dictionary<string, object>>> CreateCohort(IDictionary<string, object> CohortData)
         {
             /* Put the cohort data into a list (bacause that's how the API works) */
             List<Dictionary<string, object>> Cohorts = new List<Dictionary<string, object>>(1)
             {
                 [0] = (Dictionary<string, object>)CohortData
             };
-            /* Decide which protocol function to use from the moodle api and
-            * execute the function with the function parameters.
-            */
-            string result = await GET(moodle.rest_protocol(Server, Cohorts, "core_cohort_create_cohorts", "cohorts"));
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null;
+            return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>
+                (await POST(Server, "core_cohort_create_cohorts", Cohorts));
         }
 
         public async Task<Dictionary<string, string>> AddMembersToCohort(IDictionary<string, string> Server, IDictionary<string, IDictionary<string, string>> Params)
@@ -77,10 +74,9 @@ namespace MoodleRegisrtationTool
             * execute the function with the function parameters.
             */
             /* Parse moodle's json response into a nice dictionary to update the GUI with. */
-            Dictionary<string, object> Result = JsonConvert.DeserializeObject<Dictionary<string, object>>
+            return JsonConvert.DeserializeObject<Dictionary<string, object>>
                 (await POST(Server, "core_user_view_user_profile", new Dictionary<string, object> {
                 { "userid", UserID }}));
-            return Result;
         }
 
         async public Task<string> GET(string uri)

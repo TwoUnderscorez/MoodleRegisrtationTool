@@ -56,7 +56,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(760, 370);
             this.metroTabControl1.TabIndex = 0;
             // 
@@ -93,6 +93,7 @@
             // 
             this.uploadToCohorts_chkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.uploadToCohorts_chkbox.AutoSize = true;
+            this.uploadToCohorts_chkbox.Enabled = false;
             this.uploadToCohorts_chkbox.Location = new System.Drawing.Point(3, 276);
             this.uploadToCohorts_chkbox.Name = "uploadToCohorts_chkbox";
             this.uploadToCohorts_chkbox.Size = new System.Drawing.Size(200, 15);

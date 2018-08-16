@@ -118,6 +118,17 @@ namespace MoodleRegisrtationTool
             foreach (CSVPerson person in flowLayoutPanel.Controls.OfType<CSVPerson>())
                 if (!(await SearchUploadedUsers(person, data)))
                     person.CheckState = CheckState.Indeterminate;
+            /*if(uploadToCohorts_chkbox.Checked)
+            {
+                IDictionary<string, object> cohort = new Dictionary<string, object>
+                {
+                    { "categorytype", new Dictionary<string, string>() { { "type", "system" }, { "value", "" } } },
+                    { "name", cohortName_txt.Text },
+                    { "idnumber", "" }
+                };
+                await moodleAPI.CreateCohort(cohort);
+
+            }*/
             Enabled = true;
         }
 
@@ -129,6 +140,7 @@ namespace MoodleRegisrtationTool
                 {
                     if (person.UserName == item["username"].ToString())
                     {
+                        person.ID = int.Parse(item["id"].ToString());
                         return true;
                     }
                 }
