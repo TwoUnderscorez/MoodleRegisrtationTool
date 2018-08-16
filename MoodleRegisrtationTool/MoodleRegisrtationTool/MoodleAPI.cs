@@ -29,14 +29,15 @@ namespace MoodleRegisrtationTool
 
         #region Methods
 
-        public async Task<IDictionary<string,string>> UploadUsers(IDictionary<string, string> Server, IList<IDictionary<string, string>> Users)
+        public async Task<IList<IDictionary<string, object>>> UploadUsers(IDictionary<string, string> Server, IList<IDictionary<string, object>> Users)
         {
             /* Decide which protocol function to use from the moodle api and
             * execute the function with the function parameters.
             */
             string result = await GET(moodle.rest_protocol(Server, Users, "core_user_create_users", "users"));
             /* Parse moodle's xml response into a nice dictionary to update the GUI with. */
-            return null;
+            return JsonConvert.DeserializeObject<IList<IDictionary<string, object>>>
+                (await POST(Server, "core_user_create_users", Users));
         }
 
         public async Task<Dictionary<string, string>> CreateCohort(IDictionary<string, string> Server, IDictionary<string, object> CohortData)
@@ -64,20 +65,6 @@ namespace MoodleRegisrtationTool
             return null;
         }
 
-        public void NestedDictIteration(Dictionary<string, object> nestedDict)
-        {
-            foreach (string key in nestedDict.Keys)
-            {
-                Console.WriteLine(key);
-                object nextLevel = nestedDict[key];
-                if (nextLevel == null)
-                {
-                    continue;
-                }
-                NestedDictIteration((Dictionary<string, object>)nextLevel);
-            }
-        }
-
         public async Task<Dictionary<string, object>> GetUserProfile(IDictionary<string, string> Server, int UserID)
         {
             /* Decide which protocol function to use from the moodle api and
@@ -85,8 +72,8 @@ namespace MoodleRegisrtationTool
             */
             Dictionary<string, object> Content = new Dictionary<string, object>();
             Content.Add("userid", UserID);
-            //string result = await POST(Server,"core_user_view_user_profile", Content);
-            Dictionary<string, object> Result = await POST(Server, "core_user_view_user_profile", Content);
+            Dictionary<string, object> Result = JsonConvert.DeserializeObject<Dictionary<string, object>>
+                (await POST(Server, "core_user_view_user_profile", Content));
             return Result;
         }
 
@@ -107,23 +94,27 @@ namespace MoodleRegisrtationTool
             return myContent;
         }
 
-        public async Task<Dictionary<string, object>> POST(IDictionary<string, string> Server, string Function, Dictionary<string, object> Data)
+        public async Task<string> POST(IDictionary<string, string> Server, string Function, dynamic Data)
         {
-            string myContent;
-            
-            using (HttpClient client = new HttpClient())
+            try
             {
-                using (HttpResponseMessage response = await client.PostAsync(
-                        $"{Server["uri"]}/webservice/{Server["protocol"]}/server.php?wstoken={Server["token"]}&wsfunction={Function}",
-                        new StringContent(JsonConvert.SerializeObject(Data), Encoding.UTF8, "application/json")))
+                using (HttpClient client = new HttpClient())
                 {
-                    using (HttpContent content = response.Content)
+                    using (HttpResponseMessage response = await client.PostAsync(
+                            $"{Server["uri"]}/webservice/{Server["protocol"]}/server.php?wstoken={Server["token"]}&wsfunction={Function}",
+                            new StringContent(JsonConvert.SerializeObject(Data), Encoding.UTF8, "application/json")))
                     {
-                        myContent = await content.ReadAsStringAsync();
+                        using (HttpContent content = response.Content)
+                        {
+                            return await content.ReadAsStringAsync();
+                        }
                     }
                 }
             }
-            return JsonConvert.DeserializeObject<Dictionary<string, object>>(myContent);
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         #endregion

@@ -33,7 +33,7 @@
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.cohortName_txt = new MetroFramework.Controls.MetroTextBox();
             this.uploadToCohorts_chkbox = new MetroFramework.Controls.MetroCheckBox();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.upload_btn = new MetroFramework.Controls.MetroButton();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.browse_btn = new MetroFramework.Controls.MetroButton();
             this.path_txt = new MetroFramework.Controls.MetroTextBox();
@@ -65,7 +65,7 @@
             this.metroTabPage1.AutoScroll = true;
             this.metroTabPage1.Controls.Add(this.cohortName_txt);
             this.metroTabPage1.Controls.Add(this.uploadToCohorts_chkbox);
-            this.metroTabPage1.Controls.Add(this.metroButton2);
+            this.metroTabPage1.Controls.Add(this.upload_btn);
             this.metroTabPage1.Controls.Add(this.flowLayoutPanel);
             this.metroTabPage1.Controls.Add(this.browse_btn);
             this.metroTabPage1.Controls.Add(this.path_txt);
@@ -101,14 +101,15 @@
             this.uploadToCohorts_chkbox.UseVisualStyleBackColor = true;
             this.uploadToCohorts_chkbox.CheckedChanged += new System.EventHandler(this.uploadToCohorts_chkbox_CheckedChanged);
             // 
-            // metroButton2
+            // upload_btn
             // 
-            this.metroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton2.Location = new System.Drawing.Point(648, 274);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(101, 23);
-            this.metroButton2.TabIndex = 6;
-            this.metroButton2.Text = "Upload selected";
+            this.upload_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.upload_btn.Location = new System.Drawing.Point(648, 274);
+            this.upload_btn.Name = "upload_btn";
+            this.upload_btn.Size = new System.Drawing.Size(101, 23);
+            this.upload_btn.TabIndex = 6;
+            this.upload_btn.Text = "Upload selected";
+            this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
             // 
             // flowLayoutPanel
             // 
@@ -236,7 +237,7 @@
         private MetroFramework.Controls.MetroTextBox path_txt;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
-        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroButton upload_btn;
         private MetroFramework.Controls.MetroTextBox cohortName_txt;
         private MetroFramework.Controls.MetroCheckBox uploadToCohorts_chkbox;
     }

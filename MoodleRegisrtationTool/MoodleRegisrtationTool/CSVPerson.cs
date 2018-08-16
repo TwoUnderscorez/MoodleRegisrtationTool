@@ -34,12 +34,12 @@ namespace MoodleRegisrtationTool
             ToolTipSetup();
         }
 
+        public override string Text { get => ToString(); set => base.Text = value; }
+
         public override string ToString()
         {
             return $"{firstName} {lastName} [{userName}]";
         }
-
-        //public override string Text { get => ToString(); set => base.Text = value; }; 
 
         private void ToolTipSetup()
         {
@@ -53,6 +53,11 @@ namespace MoodleRegisrtationTool
 
             // Set up the ToolTip text to show the email.
             myToolTip.SetToolTip(this, email);
+        }
+
+        protected override void OnCheckedChanged(EventArgs e)
+        {
+            base.OnCheckedChanged(e);
         }
     }
 }
