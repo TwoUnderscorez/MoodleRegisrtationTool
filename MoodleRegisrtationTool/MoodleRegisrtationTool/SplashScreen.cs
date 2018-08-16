@@ -38,10 +38,10 @@ namespace MoodleRegisrtationTool
                 /* Asynchronously initialize the Moodle API */
                 MoodleAPI moodleAPI = await Task.Run(() =>
                 {
-                    return new MoodleAPI();
+                    return new MoodleAPI(Server);
                 });
                 /* Asynchronously verify the server information */
-                Dictionary<string, object> Response = await moodleAPI.GetUserProfile(Server, 0);
+                Dictionary<string, object> Response = await moodleAPI.GetUserProfile(0);
                 if (Response.Keys.Contains("status") && (bool)Response["status"])
                 {
                     /* If all is good, continie to the MainForm */

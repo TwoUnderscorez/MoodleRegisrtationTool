@@ -109,7 +109,7 @@
             this.upload_btn.Size = new System.Drawing.Size(101, 23);
             this.upload_btn.TabIndex = 6;
             this.upload_btn.Text = "Upload selected";
-            this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
+            this.upload_btn.Click += new System.EventHandler(this.upload_btn_ClickAsync);
             // 
             // flowLayoutPanel
             // 

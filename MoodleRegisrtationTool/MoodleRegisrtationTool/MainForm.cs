@@ -15,10 +15,11 @@ namespace MoodleRegisrtationTool
 {
     public partial class MainForm : MetroForm
     {
-        Dictionary<string, string> Server;
+        MoodleAPI moodleAPI;
         public MainForm(IDictionary<string, string> Server)
         {
             InitializeComponent();
+            moodleAPI = new MoodleAPI(Server);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -62,11 +63,13 @@ namespace MoodleRegisrtationTool
             Dictionary<string, string> student;
             foreach (var line in CsvReader.ReadFromStream(File.OpenRead(path)))
             {
-                student = new Dictionary<string, string>(3);
-                student.Add("firstname", line["firstname"]);
-                student.Add("lastname", line["lastname"]);
-                student.Add("email", line["email"]);
-                student.Add("username", line["username"]);
+                student = new Dictionary<string, string>(4)
+                {
+                    { "firstname", line["firstname"] },
+                    { "lastname", line["lastname"] },
+                    { "email", line["email"] },
+                    { "username", line["username"] }
+                };
                 students.Add(student);
             }
             return students;
@@ -87,9 +90,50 @@ namespace MoodleRegisrtationTool
             Environment.Exit(0);
         }
 
-        private void upload_btn_Click(object sender, EventArgs e)
+        private async void upload_btn_ClickAsync(object sender, EventArgs e)
         {
+            for (int i = 0; i < flowLayoutPanel.Controls.Count; i++)
+                if (!(flowLayoutPanel.Controls[i] as CSVPerson).Checked)
+                {
+                    flowLayoutPanel.Controls.Remove(flowLayoutPanel.Controls[i]);
+                    i--;
+                }
 
+            IList<IDictionary<string, object>> students = new List<IDictionary<string, object>>();
+            IDictionary<string, object> student;
+            foreach (CSVPerson CSVstudent in flowLayoutPanel.Controls)
+            {
+                student = new Dictionary<string, object>(5)
+                {
+                    { "firstname", CSVstudent.FirstName },
+                    { "lastname", CSVstudent.LastName },
+                    { "email", CSVstudent.Email },
+                    { "username", CSVstudent.UserName },
+                    { "createpassword", 1 }
+                };
+                students.Add(student);
+            }
+            Enabled = false;
+            var data = await moodleAPI.UploadUsers(students);
+            foreach (CSVPerson person in flowLayoutPanel.Controls.OfType<CSVPerson>())
+                if (!(await SearchUploadedUsers(person, data)))
+                    person.CheckState = CheckState.Indeterminate;
+            Enabled = true;
+        }
+
+        private async Task<bool> SearchUploadedUsers(CSVPerson person, IList<IDictionary<string, object>> data)
+        {
+            return await Task.Run(() =>
+            {
+                foreach (var item in data)
+                {
+                    if (person.UserName == item["username"].ToString())
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
     }
 }

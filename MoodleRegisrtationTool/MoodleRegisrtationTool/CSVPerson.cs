@@ -10,10 +10,39 @@ namespace MoodleRegisrtationTool
 {
     class CSVPerson : MetroCheckBox
     {
-        string firstName;
-        string lastName;
-        string userName;
-        string email;
+        private string firstName;
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        private string lastName;
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        private string userName;
+
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
+
         public CSVPerson(string firstName, string lastName, string userName, string email) : base()
         {
             this.firstName = firstName;
