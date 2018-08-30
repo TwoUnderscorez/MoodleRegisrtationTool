@@ -97,7 +97,6 @@
             // 
             this.uploadToCohorts_chkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.uploadToCohorts_chkbox.AutoSize = true;
-            this.uploadToCohorts_chkbox.Enabled = false;
             this.uploadToCohorts_chkbox.Location = new System.Drawing.Point(3, 276);
             this.uploadToCohorts_chkbox.Name = "uploadToCohorts_chkbox";
             this.uploadToCohorts_chkbox.Size = new System.Drawing.Size(200, 15);

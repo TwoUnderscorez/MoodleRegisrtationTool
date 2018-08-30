@@ -138,17 +138,42 @@ namespace MoodleRegisrtationTool
                     CSVstudent.ID = -1;
                 }
             }
-            /*if(uploadToCohorts_chkbox.Checked)
+            count = 0;
+            if(uploadToCohorts_chkbox.Checked)
             {
-                IDictionary<string, object> cohort = new Dictionary<string, object>
+                /* Create the cohort */
+                toolStripStatusLabel.Text = $"Creating cohort named {cohortName_txt.Text}";
+                toolStripProgressBar.Value = 50;
+                try
                 {
-                    { "categorytype", new Dictionary<string, string>() { { "type", "system" }, { "value", "" } } },
-                    { "name", cohortName_txt.Text },
-                    { "idnumber", "" }
-                };
-                await moodleAPI.CreateCohort(cohort);
-
-            }*/
+                    await moodleAPI.CreateCohort(cohortName_txt.Text);
+                }
+                catch (Exception)
+                {
+                    toolStripStatusLabel.Text = $"Ready";
+                    toolStripProgressBar.Value = 0;
+                    MessageBox.Show("Could not create cohort", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Enabled = true;
+                    return;
+                }
+                /* Add the users to the cohort */
+                foreach (CSVPerson item in flowLayoutPanel.Controls.OfType<CSVPerson>())
+                {
+                    toolStripStatusLabel.Text = $"Adding to cohort {++count}/{flowLayoutPanel.Controls.Count}...";
+                    toolStripProgressBar.Value = (int)(((float)count / flowLayoutPanel.Controls.Count) * 100);
+                    try
+                    {
+                        if (item.ID.HasValue && item.ID.Value < 1) throw new Exception("Tried to add a non existing user to a cohort");
+                        await moodleAPI.AddMemberToCohort(cohortName_txt.Text, item.ID.Value);
+                        item.Cohort = cohortName_txt.Text;
+                    }
+                    catch (Exception)
+                    {
+                        item.Cohort = "ERR";
+                        item.CheckState = CheckState.Indeterminate;
+                    }
+                }
+            }
             toolStripStatusLabel.Text = $"Done!";
             toolStripProgressBar.Value = 100;
             await Task.Delay(1000);

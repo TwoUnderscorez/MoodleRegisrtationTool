@@ -50,6 +50,13 @@ namespace MoodleRegisrtationTool
             set { id = value; }
         }
 
+        private string cohort;
+
+        public string Cohort
+        {
+            get { return cohort; }
+            set { cohort = value; }
+        }
 
 
         public CSVPerson(string firstName, string lastName, string userName, string email) : base()
@@ -58,7 +65,7 @@ namespace MoodleRegisrtationTool
             this.lastName = lastName;
             this.userName = userName;
             this.email = email;
-            Size = new System.Drawing.Size(200, 15);
+            Size = new System.Drawing.Size(300, 15);
             ToolTipSetup();
         }
 
@@ -68,7 +75,7 @@ namespace MoodleRegisrtationTool
             lastName = CSVkeyValuePairs["lastname"];
             userName = CSVkeyValuePairs["username"];
             email = CSVkeyValuePairs["email"];
-            Size = new System.Drawing.Size(200, 15);
+            Size = new System.Drawing.Size(300, 15);
             ToolTipSetup();
         }
 
@@ -76,7 +83,8 @@ namespace MoodleRegisrtationTool
 
         public override string ToString()
         {
-            return $"{firstName} {lastName} [{userName}] {((id.HasValue) ? $"[{id}]" : "")}";
+            return $"{firstName} {lastName} [{userName}]{((id.HasValue) ? $" [{id}]" : "")}" +
+                $"{((!string.IsNullOrEmpty(cohort)) ? $" [{cohort}]" : "")}";
         }
 
         private void ToolTipSetup()
