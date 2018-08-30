@@ -31,17 +31,21 @@ namespace MoodleRegisrtationTool
 
         #region Methods
 
-        public async Task<IList<IDictionary<string, object>>> UploadUsers(IList<IDictionary<string, object>> Users)
+        public async Task<IList<IDictionary<string, object>>> UploadUsers(IDictionary<string, object> User)
         {
             /* Contruct the data structure required by the moodle API */
-            Dictionary<string, object> data = new Dictionary<string, object>
+            
+            Dictionary<string, object> data = new Dictionary<string, object>(2)
             {
-                { "users", Users }
+                ["users"] = new List<object>()
+                {
+                    User
+                }
             };
+
             /* Parse moodle's json response into a nice dictionary to update the GUI with. */
             return JsonConvert.DeserializeObject<IList<IDictionary<string, object>>>
-                (await POST(Server, "core_user_create_users", new Dictionary<string, object> {
-                { "users", Users } }));
+                (await POST(Server, "core_user_create_users", data));
         }
 
         public async Task<List<Dictionary<string, object>>> CreateCohort(string name)
@@ -51,7 +55,7 @@ namespace MoodleRegisrtationTool
             {
                 ["cohorts"] = new List<object>(1)
                 {
-                    [0] = new Dictionary<string, object>(3)
+                    new Dictionary<string, object>(3)
                     {
                         ["categorytype"] = new Dictionary<string, string>(2)
                         {
@@ -74,7 +78,7 @@ namespace MoodleRegisrtationTool
             {
                 ["members"] = new List<object>(1)
                 {
-                    [0] = new Dictionary<string, object>(2)
+                    new Dictionary<string, object>(2)
                     {
                         ["cohorttype"] = new Dictionary<string, string>(2)
                         {
@@ -84,7 +88,7 @@ namespace MoodleRegisrtationTool
                         ["usertype"] = new Dictionary<string, object>(2)
                         {
                             ["type"] = "id",
-                            ["value"] = usersID
+                            ["value"] = userID
                         }
                     }
                 }

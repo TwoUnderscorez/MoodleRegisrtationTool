@@ -16,10 +16,17 @@ namespace MoodleRegisrtationTool
     public partial class MainForm : MetroForm
     {
         MoodleAPI moodleAPI;
+        string status;
         public MainForm(IDictionary<string, string> Server)
         {
             InitializeComponent();
             moodleAPI = new MoodleAPI(Server);
+        }
+
+        /* If status contains somthing, display it in the title bar */
+        public override string ToString()
+        {
+            return $"{base.Text}{((string.IsNullOrEmpty(status)) ? $" - {status}" : "")}";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -92,17 +99,23 @@ namespace MoodleRegisrtationTool
 
         private async void upload_btn_ClickAsync(object sender, EventArgs e)
         {
+            Enabled = false;
+            /* Remove not selected users from the panel */
             for (int i = 0; i < flowLayoutPanel.Controls.Count; i++)
                 if (!(flowLayoutPanel.Controls[i] as CSVPerson).Checked)
                 {
                     flowLayoutPanel.Controls.Remove(flowLayoutPanel.Controls[i]);
                     i--;
                 }
-
-            IList<IDictionary<string, object>> students = new List<IDictionary<string, object>>();
+            /* Upload users */
             IDictionary<string, object> student;
+            int count = 0;
             foreach (CSVPerson CSVstudent in flowLayoutPanel.Controls)
             {
+                count++;
+                toolStripStatusLabel.Text = $"Uploading {count}/{flowLayoutPanel.Controls.Count} users...";
+                toolStripProgressBar.Value = (int)(((float)count / flowLayoutPanel.Controls.Count)*100);
+                /* Create the data */
                 student = new Dictionary<string, object>(5)
                 {
                     { "firstname", CSVstudent.FirstName },
@@ -111,13 +124,20 @@ namespace MoodleRegisrtationTool
                     { "username", CSVstudent.UserName },
                     { "createpassword", 1 }
                 };
-                students.Add(student);
+                /* try to uplaod the user */
+                try
+                {
+                    var data = await moodleAPI.UploadUsers(student);
+                    /* If successful, display user's ID */
+                    CSVstudent.ID = int.Parse(data[0]["id"].ToString()); 
+                }
+                catch (Exception)
+                {
+                    /* If not successful, indicate in the GUI */
+                    CSVstudent.CheckState = CheckState.Indeterminate;
+                    CSVstudent.ID = -1;
+                }
             }
-            Enabled = false;
-            var data = await moodleAPI.UploadUsers(students);
-            foreach (CSVPerson person in flowLayoutPanel.Controls.OfType<CSVPerson>())
-                if (!(await SearchUploadedUsers(person, data)))
-                    person.CheckState = CheckState.Indeterminate;
             /*if(uploadToCohorts_chkbox.Checked)
             {
                 IDictionary<string, object> cohort = new Dictionary<string, object>
@@ -129,6 +149,11 @@ namespace MoodleRegisrtationTool
                 await moodleAPI.CreateCohort(cohort);
 
             }*/
+            toolStripStatusLabel.Text = $"Done!";
+            toolStripProgressBar.Value = 100;
+            await Task.Delay(1000);
+            toolStripStatusLabel.Text = $"Ready";
+            toolStripProgressBar.Value = 0;
             Enabled = true;
         }
 
