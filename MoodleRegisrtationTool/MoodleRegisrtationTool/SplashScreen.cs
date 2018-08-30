@@ -63,7 +63,7 @@ namespace MoodleRegisrtationTool
                     ((LoginForm)sender).Text = "Login - Unknown error / unable to parse moodle's response";
                 }
                 /* If the login failed, prompt user to try again */
-                await Task.Delay(1000);
+                
                 Hide();
                 ((LoginForm)sender).Style = MetroFramework.MetroColorStyle.Red;
                 ((LoginForm)sender).Visible = true;
