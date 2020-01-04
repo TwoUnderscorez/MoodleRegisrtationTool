@@ -1,14 +1,11 @@
-﻿using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
+﻿using Microsoft.Scripting.Hosting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using Newtonsoft.Json;
-using System.Xml;
+using IronPython.Hosting;
+using  Newtonsoft.Json;
 
 namespace MoodleRegisrtationTool
 {
@@ -34,7 +31,7 @@ namespace MoodleRegisrtationTool
         public async Task<IList<IDictionary<string, object>>> UploadUsers(IDictionary<string, object> User)
         {
             /* Contruct the data structure required by the moodle API */
-            
+
             Dictionary<string, object> data = new Dictionary<string, object>(2)
             {
                 ["users"] = new List<object>()
